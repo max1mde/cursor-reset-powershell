@@ -24,7 +24,7 @@ $d = [System.Text.RegularExpressions.Regex]::Matches($c, '"telemetry\.(machineId
     ForEach-Object { $_.Groups[2].Value } | 
     Select-Object -First 3
 
-Write-Host "`n✅ Cursor Trial Successfully Reset - New Device IDs Generated:`n"
+Write-Host "`nCursor Trial Successfully Reset - New Device IDs Generated:`n"
 
 @{
     machineId    = $d[0]
