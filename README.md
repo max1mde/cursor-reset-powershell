@@ -11,7 +11,6 @@ The script generates random device IDs, letting Cursor recognize your system as 
 ## Key Features
 - ✨ Automatic random device ID generation
 - 🔄 Automatic backup of original configuration
-- 💻 Windows-only PowerShell implementation
 - 📦 Works out of the box - requires only Windows PowerShell (pre-installed on all Windows systems)
 
 > [!IMPORTANT]  
