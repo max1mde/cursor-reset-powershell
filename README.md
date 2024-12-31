@@ -28,6 +28,11 @@ Or run the [script](script.ps1): `powershell -File .\script.ps1` (in terminal or
 
 <br>
 
+If you are unsure about the safety of the script, you can generate the ID's using on https://max1mde.github.io/cursor-reset-powershell/
+and replace the ID's manually.
+
+<br>
+
 ### Configuration Location
 The Windows configuration file is located at:
 ```
