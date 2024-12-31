@@ -9,7 +9,6 @@
 The script generates random device IDs, letting Cursor recognize your system as new. It backs up your original config file before any changes.
 
 ## Key Features
-- ✨ Automatic random device ID generation
 - 🔄 Automatic backup of original configuration
 - 📦 Works out of the box - requires only Windows PowerShell (pre-installed on all Windows systems)
 
