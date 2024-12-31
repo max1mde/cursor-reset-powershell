@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Device ID Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #181818;
+        color: #d6d6dd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+      }
+      .container {
+        background-color: #2c2c2c;
+        border-radius: 10px;
+        padding: 20px;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        color: white;
+        margin-bottom: 20px;
+      }
+      p,
+      .tip {
+        display: inline-block;
+        font-size: 16px;
+        color: #e4e4e4;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      .json-block {
+        background-color: #1e1e1e;
+        color: #d6d6dd;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        max-width: 100%;
+        text-align: left;
+      }
+      button {
+        background-color: #347d39;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-bottom: 20px;
+      }
+      button:hover {
+        background-color: #3b8b40;
+      }
+      button:active {
+        transform: scale(0.95);
+      }
+      .important,
+      .tip {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .important {
+        color: #ffcc00;
+        font-weight: bold;
+      }
+      .code-block {
+        display: inline-block;
+        background-color: #333;
+        padding: 10px;
+        font-family: "Courier New", monospace;
+        border-radius: 16px;
+        margin-top: 15px;
+      }
+      .github-btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: #333;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-top: 20px;
+      }
+      .github-btn:hover {
+        background-color: #444;
+      }
+      .github-btn:active {
+        transform: scale(0.95);
+      }
+      .github-btn img {
+        width: 20px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+
+      .tip code {
+        background-color: #444;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-family: "Courier New", monospace;
+        color: #f0f0f0;
+      }
+      .tip .path {
+        background-color: #24292f;
+        padding: 5px;
+        border-radius: 5px;
+        font-family: "Courier New", monospace;
+        color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Replace the ID's manually</h1>
+
+      <sup>
+        C:\Users\[USER]\AppData\Roaming\Cursor\User\globalStorage\storage.json
+      </sup>
+
+      <div class="json-block" id="json-block"></div>
+
+      <button id="regenerate-btn">Regenerate IDs</button>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> You can quickly open the
+          <code class="path"
+            >%APPDATA%\Cursor\User\globalStorage\storage.json</code
+          >
+          file by pressing
+          <strong>WIN + R</strong> and pasting the path above.
+        </p>
+      </div>
+
+      <p class="important">
+        You must log out and completely close Cursor before running the script.
+        If Cursor is running in the background, it may revert to the previous
+        device ID, undoing the reset.
+      </p>
+
+      <a
+        href="https://github.com/max1mde/cursor-reset-powershell"
+        class="github-btn"
+        target="_blank">
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub" />
+        View on GitHub
+      </a>
+    </div>
+
+    <script>
+      function getRandHex() {
+        let array = new Uint8Array(32);
+        window.crypto.getRandomValues(array);
+        return Array.from(array)
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      function getGuid() {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+          /[xy]/g,
+          function (c) {
+            let r = (Math.random() * 16) | 0;
+            let v = c === "x" ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+          }
+        );
+      }
+
+      function regenerateJSON() {
+        const jsonStructure = {
+          "telemetry.macMachineId": getRandHex(),
+          "telemetry.machineId": getRandHex(),
+          "telemetry.devDeviceId": getGuid(),
+        };
+
+        const jsonBlock = document.getElementById("json-block");
+        jsonBlock.textContent = JSON.stringify(jsonStructure, null, 4);
+      }
+
+      document
+        .getElementById("regenerate-btn")
+        .addEventListener("click", regenerateJSON);
+
+      regenerateJSON();
+    </script>
+  </body>
+</html>
