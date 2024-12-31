@@ -1,6 +1,9 @@
-# Cursor Trial Reset Tool (PowerShell Version)
-A Windows-focused PowerShell utility that manages Cursor editor's device identification system by resetting stored device IDs.  
-This tool can help resolve issues related to account restrictions when switching between accounts or during trial periods.
+<div align="center">
+<sup>This tool can help resolve issues related to account restrictions when switching between accounts or during trial periods.</sup>
+<h1>Cursor Trial Reset Tool (PowerShell Version)</h1>
+<p>A Windows-focused PowerShell utility that manages<br> Cursor editor's device identification system by resetting stored device IDs.</p>  
+<img width="700" src="https://github.com/user-attachments/assets/d2622897-98e3-489e-9f08-198987497765"><br>
+</div>
 
 ## How It Works
 The script generates random device IDs, letting Cursor recognize your system as new. It backs up your original config file before any changes.
